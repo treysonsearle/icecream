@@ -1,0 +1,3 @@
+DELETE 
+FROM bag
+WHERE id = $1;
