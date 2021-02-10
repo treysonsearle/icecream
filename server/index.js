@@ -56,7 +56,7 @@ app.delete('/api/flavor/:id', flavorCtrl.deleteFlavor)
 
 
 app.post('/api/bag', bagCtrl.createBag);
-// app.put('/api/bag/:id', bagCtrl.UpdateBag);
+app.put('/api/bag/:id', bagCtrl.updateBag);
 app.post('/api/bag_list', bagCtrl.createBagList)
 // app.get('/api/bag_list/:id', bagCtrl.readBagList)
 app.get(`/api/orderedFlavors/:id`, bagCtrl.getOrderedFlavors)
@@ -71,10 +71,10 @@ app.post("/api/checkout", async (req, res) => {
   let error;
   let status;
   try {
-    const { token, price } = req.body;
+    const { token, total } = req.body;
 
     console.log(token)
-    console.log(price)
+    console.log(total)
     const customer = await stripe.customers.create({
       email: token.email,
       source: token.id
@@ -84,11 +84,11 @@ app.post("/api/checkout", async (req, res) => {
     console.log(idempotency_key)
     const charge = await stripe.charges.create(
       {
-        amount: price * 100,
+        amount: total * 100,
         currency: "usd",
         customer: customer.id,
         receipt_email: token.email,
-        description: `Purchased the ${price}`,
+        description: `Purchased the ${total}`,
         shipping: {
           name: token.card.name,
           address: {

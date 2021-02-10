@@ -21,25 +21,25 @@ class Nav extends Component {
 
   getUser() {
     axios.get('/api/auth/me')
-    .then(res => {this.props.updateUser(res.data)})
+      .then(res => { this.props.updateUser(res.data) })
   }
-  
+
   logout() {
     axios.post('/api/auth/logout')
       .then(res => this.props.logout())
   }
-  
-  render() {
-      return this.props.location.pathname !== '/' &&
-        <div className='nav'>
 
-          <div className='nav-links'>
-            <Link to='/dash'><img className=''  alt='home' /></Link>
-            <Link to='/customize'><img className=''  alt='Customize' /></Link>
-            <Link to='/Order/:id'><img className='' alt='Order' /></Link>
-          </div>
-          <Link to='/'><img className='logout' alt='logout' /></Link>
-        </div>
+  render() {
+    return this.props.location.pathname !== '/' &&
+      <div className='nav'>
+
+        <div className='nav-links'>
+          <Link to='/dash'>Home</Link>
+          <Link to='/customize'>Customize</Link>
+          <Link to='/Order/:id'>Order</Link>
+
+          <Link to='/'>Logout</Link></div>
+      </div>
   }
 }
 

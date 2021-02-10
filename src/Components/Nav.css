@@ -1,0 +1,19 @@
+.nav-links {
+
+    justify-content: center;
+margin-bottom: 20px;    
+     
+}
+
+a {
+    color: #F6F1D1;
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    margin: auto;
+    outline: 0;
+    background: #0B2027;
+    height: 20px;
+    width: 200px;
+    border: 0;
+    padding: 15px;
+}

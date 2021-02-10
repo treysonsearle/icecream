@@ -17,7 +17,7 @@ module.exports = {
         const registeredUser = await db.user.create_user([username, hash]);
         const user = registeredUser[0];
         console.log("ZOL user: " + user)
-        req.session.user = { id: user.id, username: user.username, badId: user.bag_id };
+        req.session.user = { id: user.id, username: user.username, bagId: user.bag_id };
         return res.status(201).send(req.session.user);
     },
     login: async (req, res) => {

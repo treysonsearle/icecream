@@ -12,6 +12,8 @@ module.exports = {
         return res.sendStatus(403);
       }
       const [bag] = await db.bag.create_bag([id, date_created])
+      console.log(bag)
+      req.session.user.bag = bag
       return res.status(200).send(bag)
     } else {
       return res.sendStatus(403);
@@ -40,8 +42,13 @@ module.exports = {
     req.app.get('db').bag.delete_bag(+req.params.id)
       .then(_ => res.sendStatus(200))
   },
-  deleteBagList: (req, res) => {
-    req.app.get('db').bag.delete_bag_list(+req.params.id)
-      .then(_ => res.sendStatus(200))
+  deleteBagList: async (req, res) => {
+    const db = req.app.get('db')
+    const bagList = await db.bag.delete_bag_list(+req.params.id, +req.session.user.bag.id)
+    res.status(200).send(bagList)
+  },
+  updateBag: (req, res) => {
+    req.app.get('db').bag.update_bag(+req.params.id)
+      .then(res => res.sendStatus(200))
   }
 }

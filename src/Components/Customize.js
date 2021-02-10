@@ -30,7 +30,7 @@ class Customize extends Component {
     goToOrder() {
         console.log(this.props.flavorsIds)
         const { orderId, flavorsIds } = this.props
-        flavorsIds.map(e => axios.post('/api/bag_list', { bag_id: orderId, flavor_id: e })
+        flavorsIds.map(e => axios.post('/api/bag_list', { bag_id: orderId, flavor_id: e.id })
             .then(res => {
                 console.log('it is working')
 
@@ -41,13 +41,24 @@ class Customize extends Component {
 
     }
 
+    checkFlavors() {
+        if (this.state.flavors === []) {
+            this.setState({ pic: '' })
+        }
+    }
+
     submitFlavor() {
         console.log('im clicked')
         if (this.state.flavors.length >= 1) {
             axios.post('/api/flavor', this.state)
                 .then(res => {
                     this.props.addToTotal(res.data.price)
-                    this.props.addNewFlavor(res.data.id)
+                    let obj = {
+                        id: res.data.id,
+                        name: res.data.flavor_name,
+                        amount: res.data.price
+                    }
+                    this.props.addNewFlavor(obj)
                     console.log(this.props.flavorsIds)
 
                 })
@@ -128,6 +139,7 @@ class Customize extends Component {
 
 
     render() {
+        console.log(this.state.flavors)
         return (
             <div>
                 <div>Name PlaceHolder</div>

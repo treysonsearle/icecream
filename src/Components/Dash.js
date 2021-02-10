@@ -17,6 +17,7 @@ class Dash extends Component {
       myFlavors: true,
       oldestFirst: false,
       flavors: [],
+      randomFlavors: [],
       selectedFlavor: ''
     }
     this.grabFlavors = this.grabFlavors.bind(this);
@@ -41,19 +42,25 @@ class Dash extends Component {
     this.grabFlavors();
   }
   grabFlavors() {
+    let newArray = []
     axios.get('/api/flavors')
       .then(res => {
-        this.setState({ flavors: res.data, loading: false })
+        this.setState({ flavors: res.data })
+        for (let i = 0; i < 9; i++) {
+          let index = Math.floor(Math.random() * Math.floor(this.state.flavors.length - 1))
+          newArray.push(this.state.flavors[index])
+          this.setState({ randomFlavors: [...newArray] })
+        }
       })
   }
   render() {
-    let { flavors } = this.state
+    let { randomFlavors } = this.state
 
     console.log(this.props)
     return (
-      <div>
+      <div className="container">
+        <div className="flavors">{randomFlavors.map((e, i) => <div className="flavorImg" key={i}><img src={icecream} /><p>{e.flavor_name}</p></div>)}</div>
 
-        {flavors.map((e, i) => <div key={i}><img src={icecream} /><p>{e.flavor1}</p></div>)}
 
         {/* <div>Selected Icecream  {this.props.orderId}</div> */}
         <button onClick={() => this.createOrder()}>Create your own</button>

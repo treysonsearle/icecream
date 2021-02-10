@@ -15,6 +15,7 @@
     "express-session": "^1.17.1",
     "install": "^0.13.0",
     "massive": "^6.6.4",
+    "node-sass": "^4.14.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-redux": "^7.2.2",

@@ -16,6 +16,14 @@ const SET_FLAVOR_ID = 'SET_FLAVOR_ID'
 const CLEAR_FLAVOR_ID = 'CLEAR_FLAVOR_ID'
 const ADD_TO_TOTAL = 'ADD_TO_TOTAL'
 const SUB_FROM_TOTAL = 'SUB_FROM_TOTAL'
+const CLEAR_FROM_TOTAL = 'CLEAR_FROM_TOTAL'
+
+export function clearTotal() {
+  return {
+    type: CLEAR_FROM_TOTAL,
+    payload: 0
+  }
+}
 
 export function addToTotal(price) {
   return {
@@ -54,10 +62,10 @@ export function updateUser(user) {
   }
 }
 
-export function setFlavorId(flavor) {
+export function setFlavorId(flavorArray) {
   return {
     type: SET_FLAVOR_ID,
-    payload: flavor
+    payload: flavorArray
   }
 }
 
@@ -75,13 +83,16 @@ export function logout() {
   }
 }
 
-export default function (state = initialState, action) {
+export default function reducer(state = initialState, action) {
   let { type, payload } = action;
+  console.log(payload)
   switch (type) {
     case ADD_TO_TOTAL:
       return { ...state, total: state.total + payload }
     case SUB_FROM_TOTAL:
       return { ...state, total: state.total - payload }
+    case CLEAR_FROM_TOTAL:
+      return { ...state, total: payload }
     case UPDATE_USER:
       return { ...state, username: payload };
     case LOGOUT:
