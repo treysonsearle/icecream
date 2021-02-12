@@ -11,7 +11,7 @@ const initialState = {
 const UPDATE_USER = 'UPDATE_USER';
 const LOGOUT = 'LOGOUT';
 const ADD_NEW_FLAVORS = 'ADD_NEW_FLAVORS';
-const UPDATE_ORDER_ID = 'UPDATE_ORDER_ID'
+
 const SET_FLAVOR_ID = 'SET_FLAVOR_ID'
 const CLEAR_FLAVOR_ID = 'CLEAR_FLAVOR_ID'
 const ADD_TO_TOTAL = 'ADD_TO_TOTAL'
@@ -47,13 +47,7 @@ export function clearFlavorId() {
 
 }
 
-export function updateOrderId(id) {
-  return {
-    type: UPDATE_ORDER_ID,
-    payload: id
-  }
 
-}
 
 export function updateUser(user) {
   return {
@@ -97,8 +91,7 @@ export default function reducer(state = initialState, action) {
       return { ...state, username: payload };
     case LOGOUT:
       return state;
-    case UPDATE_ORDER_ID:
-      return { ...state, orderId: payload }
+
     case ADD_NEW_FLAVORS:
       return { ...state, flavorsIds: [...state.flavorsIds, payload] };
     case CLEAR_FLAVOR_ID:

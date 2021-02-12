@@ -37,8 +37,8 @@ class Nav extends Component {
           <Link to='/dash'>Home</Link>
           <Link to='/customize'>Customize</Link>
           <Link to='/Order/:id'>Order</Link>
-
-          <Link to='/'>Logout</Link></div>
+          <Link to='/'>Logout</Link>
+        </div>
       </div>
   }
 }

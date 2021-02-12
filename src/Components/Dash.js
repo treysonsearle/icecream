@@ -2,12 +2,26 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { updateOrderId } from '../redux/reducer.js';
+import { updateOrderId } from '../redux/orderReducer';
 
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 
 import './Dash.css';
 import icecream from '../assets/icecream.svg'
+import chocolate from '../assets/chocolate.svg'
+import strawberry from '../assets/strawberry.svg'
+import carmel from '../assets/carmel.svg'
+import vanillacarmel from '../assets/vanillacarmel.svg'
+import vanillastrawberry from '../assets/vanillastrawberry.svg'
+import vanillachocolate from '../assets/vanillachocolate.svg'
+import starwberrychocolate from '../assets/starwberrychocolate.svg'
+import carmelchocolate from '../assets/carmelchocolate.svg'
+import strawberrycarmel from '../assets/strawberrycarmel.svg'
+import vanillastrawberrychocolate from '../assets/vanillastrawberrychocolate.svg'
+import vanillastrawberrycarmel from '../assets/vanillastrawberrycarmel.svg'
+import strawberrycarmelchocolate from '../assets/strawberrycarmelchocolate.svg'
+import vanillacarmelstrawberry from '../assets/vanillacarmelstrawberry.svg'
+
 
 class Dash extends Component {
   constructor(props) {
@@ -28,14 +42,9 @@ class Dash extends Component {
 
   createOrder() {
 
-    axios.post('/api/bag').then(res => {
-      console.log(res.data)
-      this.props.updateOrderId(res.data.id)
 
-    })
-      .catch(err => {
-        console.log(err)
-      })
+
+    this.props.history.push(`/customize`)
   }
 
   componentDidMount() {
@@ -56,14 +65,14 @@ class Dash extends Component {
   render() {
     let { randomFlavors } = this.state
 
-    console.log(this.props)
+
     return (
       <div className="container">
-        <div className="flavors">{randomFlavors.map((e, i) => <div className="flavorImg" key={i}><img src={icecream} /><p>{e.flavor_name}</p></div>)}</div>
+        <div className="flavors" >{randomFlavors.map((e, i) => <div className="flavorImg" key={i}><img src={e.pic} /><p className="flavor-name">{e.flavor_name}</p></div>)}</div>
 
 
         {/* <div>Selected Icecream  {this.props.orderId}</div> */}
-        <button onClick={() => this.createOrder()}>Create your own</button>
+        <button className="appBtn" id="createBtn" onClick={() => this.createOrder()}>Create your own</button>
       </div>
     )
   }

@@ -5,6 +5,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  
 }
 
 h1 {
@@ -15,7 +16,7 @@ h1 {
 }
 h2,
 p {
-  color: #658ec6;
+  color: #0B2027;
   font-weight: 500;
   opacity: 0.8;
 }
@@ -36,19 +37,25 @@ h3 {
   justify-content: center;
 }
 
+.wrapper {
+  display: block;
+  position: absolute;
+  top: 0px;
+  left: -1000px;
+  
+}
+
 @function random_range($min, $max) {
   $rand: random();
   $random_range: $min + floor($rand * (($max - $min) + 1));
   @return $random_range;
 }
 
-.snow {
+.icecream {
   $total: 200;
   position: relative;
-  width: 10px;
-  height: 10px;
-  background: white;
-  border-radius: 50%;
+  width: 50px;
+  height: 50px;
 
   @for $i from 1 through $total {
     $random-x: random(1000000) * 0.0001vw;

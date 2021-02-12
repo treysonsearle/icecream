@@ -9,7 +9,7 @@ module.exports = {
 
   },
   createFlavor: async (req, res) => {
-    const { flavorName, flavors, addIns, price } = req.body;
+    const { flavorName, flavors, addIns, price, pic } = req.body;
     let [flavor1, flavor2, flavor3] = flavors
     let [addIn1, addIn2, addIn3] = addIns
     const { id } = req.session.user
@@ -18,7 +18,7 @@ module.exports = {
     if (!id) {
       return res.sendStatus(403);
     }
-    const [flavor] = await db.flavor.create_flavor([id, flavorName, flavor1, flavor2, flavor3, addIn1, addIn2, addIn3, price, date_created])
+    const [flavor] = await db.flavor.create_flavor([id, flavorName, flavor1, flavor2, flavor3, addIn1, addIn2, addIn3, price, pic, date_created])
     return res.status(200).send(flavor)
 
   },

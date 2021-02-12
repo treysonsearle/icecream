@@ -3,8 +3,24 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import StripeCheckout from 'react-stripe-checkout'
-import { setFlavorId, clearFlavorId, subFromTotal, addNewFlavor, addToTotal, updateOrderId, clearTotal } from '../redux/reducer.js';
+import { setFlavorId, clearFlavorId, subFromTotal, addNewFlavor, addToTotal, clearTotal } from '../redux/reducer.js';
+import { updateOrderId } from '../redux/orderReducer';
 import './Order.css';
+import icecream from '../assets/icecream.svg'
+import chocolate from '../assets/chocolate.svg'
+import strawberry from '../assets/strawberry.svg'
+import carmel from '../assets/carmel.svg'
+import vanillacarmel from '../assets/vanillacarmel.svg'
+import vanillastrawberry from '../assets/vanillastrawberry.svg'
+import vanillachocolate from '../assets/vanillachocolate.svg'
+import starwberrychocolate from '../assets/starwberrychocolate.svg'
+import carmelchocolate from '../assets/carmelchocolate.svg'
+import strawberrycarmel from '../assets/strawberrycarmel.svg'
+import vanillastrawberrychocolate from '../assets/vanillastrawberrychocolate.svg'
+import vanillastrawberrycarmel from '../assets/vanillastrawberrycarmel.svg'
+import strawberrycarmelchocolate from '../assets/strawberrycarmelchocolate.svg'
+import vanillacarmelstrawberry from '../assets/vanillacarmelstrawberry.svg'
+
 
 class Order extends Component {
     constructor(props) {
@@ -54,7 +70,8 @@ class Order extends Component {
                 let obj = {
                     id: res.data.id,
                     name: res.data.flavor_name,
-                    amount: res.data.price
+                    amount: res.data.price,
+                    pic: res.data.pic
                 }
                 // newArray.push(obj)
                 console.log(obj)
@@ -111,15 +128,15 @@ class Order extends Component {
         const { flavorsIds } = this.props
         console.log(this.props)
         return (
-            <div>
+            <div className="container">
                 <h1>Your Order</h1>
 
 
                 <div>
 
-                    <div>{flavorsIds?.map((e, i) => <div key={e.id}>{e.name} {e.amount}  <button value={e.id} onClick={() => this.removeFlavorFromBag(e.id)}>Remove</button></div>)}</div>
+                    <div>{flavorsIds?.map((e, i) => <div key={e.id}>{e.name} <img src={e.pic} /> <p>Price: {e.amount}</p>   <button className="appBtn" value={e.id} onClick={() => this.removeFlavorFromBag(e.id)}>Remove</button></div>)}</div>
 
-                    <div>QTY</div>
+
 
                     <div>Total: {this.props.total}</div>
 

@@ -1,7 +1,12 @@
+.nav {
+
+    z-index: 2;
+}
+
 .nav-links {
 
     justify-content: center;
-margin-bottom: 20px;    
+    margin-bottom: 20px;    
      
 }
 
@@ -13,7 +18,13 @@ a {
     outline: 0;
     background: #0B2027;
     height: 20px;
-    width: 200px;
+    width: 25%;
     border: 0;
     padding: 15px;
+    text-decoration: none;
+
+}
+
+a:hover {
+    background: #70A9A1;
 }

@@ -24,30 +24,57 @@ img {
   }
 
   .flavors {
+
+    margin-top: 10%;
+ 
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
     justify-content: space-between;
   }
 
   .flavorImg {
+    text-align: center;
     flex: 0 32%;
     height: 100px;
     margin-bottom: 2%; 
   }
+  .flavor-name {
+    position: relative;
+    bottom: 50%;
+  }
 
-  button {
+  .appBtn {
+    line-height: 0px;
     color: #F6F1D1;
     font-family: "Roboto", sans-serif;
     text-transform: uppercase;
     margin: auto;
     outline: 0;
     background: #0B2027;
-    height: 20px;
     width: 200px;
+    height: 36px;
+    border-radius: 18px;
     border: 0;
     padding: 15px;
+    margin-bottom: 1%;
+    margin-left: 1%;
+}
+
+#createBtn{
+  margin: 0;
 }
 
 button:hover, button:active, button:focus {
     background: #70A9A1;
   }
+
+  @media (max-width: 600px){
+    .flavor-name {
+      display: none;
+    }
+    .flavorImg:hover .flavor-name {
+      display: block;
+    }
+  }
+ 

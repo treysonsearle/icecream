@@ -3,7 +3,7 @@ CREATE TABLE users (
     username varchar(255) not null,
     hash varchar(255) not null,
     bag_id Int Default -1
-)
+);
 
 
 Create table flavor ( 
@@ -17,8 +17,9 @@ addin1 text,
 addin2 text,
 addin3 text,
 price int NOT NULL,
+pic text,
 date_created timestamp
-)
+);
 
 CREATE TABLE bag (
     id serial primary key,
@@ -33,4 +34,4 @@ CREATE TABLE bag_list (
     flavor_id int NOT NULL references flavor(id),
     quantity int Default 1
     
-)
+);

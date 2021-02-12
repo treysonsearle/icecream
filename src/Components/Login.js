@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import { updateUser } from '../redux/reducer.js';
+import { updateOrderId } from '../redux/orderReducer';
 
 
 import './Login.css';
@@ -29,11 +30,20 @@ class Login extends Component {
       .then(res => {
         this.props.updateUser(res.data)
         this.props.history.push('/dash');
+        axios.post('/api/bag').then(res => {
+          console.log(res.data)
+          this.props.updateOrderId(res.data.id)
+
+        })
+          .catch(err => {
+            console.log(err)
+          })
       })
       .catch(err => {
         console.log(err)
         this.setState({ errorMsg: 'Incorrect username or password!' })
       })
+
   }
 
   register() {
@@ -73,11 +83,11 @@ class Login extends Component {
           {this.state.errorMsg && <h3 className='login-error-msg'>{this.state.errorMsg} <span onClick={this.closeErrorMessage}>X</span></h3>}
           <div className='login-input-box'>
             <p>Username:</p>
-            <input value={this.state.username} onChange={e => this.handleChange('username', e.target.value)} />
+            <input className='login-input' value={this.state.username} onChange={e => this.handleChange('username', e.target.value)} />
           </div>
           <div className='login-input-box'>
             <p>Password:</p>
-            <input value={this.state.password} type='password' onChange={e => this.handleChange('password', e.target.value)} />
+            <input className='login-input' value={this.state.password} type='password' onChange={e => this.handleChange('password', e.target.value)} />
           </div>
           <div className='login-button-container'>
             <button className='dark-button' onClick={this.login}> Login </button>
@@ -91,4 +101,4 @@ class Login extends Component {
 }
 
 
-export default connect(null, { updateUser })(Login);
+export default connect(null, { updateUser, updateOrderId })(Login);

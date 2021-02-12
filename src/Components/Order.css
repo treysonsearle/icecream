@@ -1,0 +1,42 @@
+.img{
+    width: 200px;
+    height: auto;
+    justify-content: center;
+}
+
+.container {
+    
+    background: white;
+    min-height: 80vh;
+    width: 80%;
+    background: linear-gradient(
+      to right bottom,
+      rgba(255, 255, 255, 0.7),
+      rgba(255, 255, 255, 0.3)
+    );
+    border-radius: 2rem;
+    z-index: 2;
+    backdrop-filter: blur(2rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .flavor-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  @media (min-width: 600px) {
+    img {
+        width: 130px;
+    }
+    .container{
+        width: 60%;
+    }
+}
