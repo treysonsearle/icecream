@@ -10,7 +10,7 @@ const massive = require("massive");
 const userCtrl = require('./controllers/user')
 const flavorCtrl = require('./controllers/flavors')
 const bagCtrl = require('./controllers/bag')
-
+const path = require('path')
 const PORT = process.env.SERVER_PORT
 
 
@@ -113,5 +113,10 @@ app.post("/api/checkout", async (req, res) => {
   res.json({ error, status });
 });
 
+app.use(express.static(__dirname + '/../build'))
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../build/index.html'))
+})
 
 app.listen(PORT, _ => console.log(`running on ${PORT}`));
